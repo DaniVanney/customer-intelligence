@@ -33,3 +33,32 @@ def standardize_column_names(data: pd.DataFrame) -> pd.DataFrame:
     """Validate the raw schema and return standardized column names."""
     validate_raw_schema(data)
     return data.rename(columns=COLUMN_MAPPING).copy()
+
+
+
+def coerce_column_types(data: pd.DataFrame) -> pd.DataFrame:
+    """Return retail data with explicit and consistent column types."""
+    result = data.copy()
+
+    result["invoice_id"] = result["invoice_id"].astype("string")
+    result["stock_code"] = result["stock_code"].astype("string")
+    result["description"] = result["description"].astype("string")
+    result["country"] = result["country"].astype("string")
+
+    result["customer_id"] = (
+        pd.to_numeric(result["customer_id"], errors="raise")
+        .astype("Int64")
+        .astype("string")
+    )
+
+    result["quantity"] = pd.to_numeric(
+        result["quantity"], errors="raise"
+    ).astype("int64")
+    result["unit_price"] = pd.to_numeric(
+        result["unit_price"], errors="raise"
+    ).astype("float64")
+    result["invoice_date"] = pd.to_datetime(
+        result["invoice_date"], errors="raise"
+    )
+
+    return result
