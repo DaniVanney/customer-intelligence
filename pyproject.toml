@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Customer scoring, churn prediction and sales forecasting"
 readme = "README.md"
 requires-python = ">=3.14,<3.15"
-dependencies = []
+dependencies = [
+    "openpyxl>=3.1.5,<4",
+    "pandas>=3.0.3,<4",
+]
 [project.optional-dependencies]
 dev = [
     "pytest>=9,<10",
