@@ -46,3 +46,73 @@ print(
 )
 print(f"Rows with quantity <= 0: {(data['Quantity'] <= 0).sum()}")
 print(f"Rows with price <= 0: {(data['Price'] <= 0).sum()}")
+
+
+
+valid_purchase_mask = (
+    data["Customer ID"].notna()
+    & ~cancellation_mask
+    & (data["Quantity"] > 0)
+    & (data["Price"] > 0)
+)
+
+purchases = data.loc[valid_purchase_mask].copy()
+
+invoice_counts = purchases.groupby("Customer ID")["Invoice"].nunique()
+repeat_customers = (invoice_counts >= 2).sum()
+single_purchase_customers = (invoice_counts == 1).sum()
+
+print("\nCUSTOMER RECURRENCE")
+print(f"Customers with valid purchases: {len(invoice_counts)}")
+print(f"Customers with one invoice: {single_purchase_customers}")
+print(f"Customers with two or more invoices: {repeat_customers}")
+print(f"Repeat-customer rate: {repeat_customers / len(invoice_counts):.2%}")
+
+
+
+observation_days = 180
+prediction_days = 90
+
+cutoff_dates = pd.to_datetime(
+    [
+        "2010-09-01",
+        "2010-12-01",
+        "2011-03-01",
+        "2011-06-01",
+        "2011-09-10",
+    ]
+)
+
+print("\nINACTIVITY FEASIBILITY")
+print("Cutoff | Eligible customers | Inactive customers | Inactivity rate")
+
+for cutoff_date in cutoff_dates:
+    observation_start = cutoff_date - pd.Timedelta(days=observation_days)
+    prediction_end = cutoff_date + pd.Timedelta(days=prediction_days)
+
+    observation_mask = (
+        (purchases["InvoiceDate"] >= observation_start)
+        & (purchases["InvoiceDate"] < cutoff_date)
+    )
+    prediction_mask = (
+        (purchases["InvoiceDate"] >= cutoff_date)
+        & (purchases["InvoiceDate"] < prediction_end)
+    )
+
+    eligible_customers = pd.Index(
+        purchases.loc[observation_mask, "Customer ID"].unique()
+    )
+    future_customers = purchases.loc[
+        prediction_mask, "Customer ID"
+    ].unique()
+
+    inactive_mask = ~eligible_customers.isin(future_customers)
+    inactive_count = inactive_mask.sum()
+    inactivity_rate = inactive_count / len(eligible_customers)
+
+    print(
+        f"{cutoff_date.date()} | "
+        f"{len(eligible_customers)} | "
+        f"{inactive_count} | "
+        f"{inactivity_rate:.2%}"
+    )
