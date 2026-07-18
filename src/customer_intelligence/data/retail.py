@@ -62,3 +62,22 @@ def coerce_column_types(data: pd.DataFrame) -> pd.DataFrame:
     )
 
     return result
+
+
+
+def add_derived_columns(data: pd.DataFrame) -> pd.DataFrame:
+    """Add business flags and transaction-line value."""
+    result = data.copy()
+
+    result["is_cancellation"] = result["invoice_id"].str.startswith(
+        "C", na=False
+    )
+    result["line_total"] = result["quantity"] * result["unit_price"]
+    result["is_valid_purchase"] = (
+        result["customer_id"].notna()
+        & ~result["is_cancellation"]
+        & (result["quantity"] > 0)
+        & (result["unit_price"] > 0)
+    )
+
+    return result
