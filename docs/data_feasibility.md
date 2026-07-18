@@ -21,14 +21,11 @@ diciembre de 2009 y diciembre de 2011.
 - Tasa de clientes recurrentes: 72,39%.
 - 243.007 filas sin identificador de cliente.
 - 19.494 filas correspondientes a cancelaciones.
-- 34.335 filas exactamente duplicadas que requieren investigación.
+-  34.335 copias exactas excedentes identificadas.
 
-Provisionalmente, una compra válida se define como una fila con:
+Provisionalmente, una compra válida se define cuando cumple con un identificador de cliente conocido, una cantidad positiva, un precio positivo y una factura que no esté marcada como cancelación.
 
-- Un identificador de cliente conocido.
-- Una cantidad positiva.
-- Un precio positivo.
-- Una factura que no esté marcada como cancelación.
+Durante el procesamiento se conservará la primera aparición de cada fila exactamente duplicada y se eliminarán las copias excedentes. Los archivosoriginales permanecerán sin modificaciones.
 
 ### Etiqueta de inactividad
 

@@ -9,8 +9,7 @@ sheets = pd.read_excel(DATA_PATH, sheet_name=None)
 data = pd.concat(sheets.values(), ignore_index=True)
 
 rows_by_sheet = {
-    sheet_name: len(sheet_data)
-    for sheet_name, sheet_data in sheets.items()
+    sheet_name: len(sheet_data) for sheet_name, sheet_data in sheets.items()
 }
 
 invoice_text = data["Invoice"].astype("string")
@@ -41,12 +40,10 @@ print("\nPotential data-quality issues:")
 print(f"Exact duplicate rows: {data.duplicated().sum()}")
 print(f"Cancellation rows: {cancellation_mask.sum()}")
 print(
-    "Cancelled invoices: "
-    f"{data.loc[cancellation_mask, 'Invoice'].nunique(dropna=True)}"
+    f"Cancelled invoices: {data.loc[cancellation_mask, 'Invoice'].nunique(dropna=True)}"
 )
 print(f"Rows with quantity <= 0: {(data['Quantity'] <= 0).sum()}")
 print(f"Rows with price <= 0: {(data['Price'] <= 0).sum()}")
-
 
 
 valid_purchase_mask = (
@@ -69,7 +66,6 @@ print(f"Customers with two or more invoices: {repeat_customers}")
 print(f"Repeat-customer rate: {repeat_customers / len(invoice_counts):.2%}")
 
 
-
 observation_days = 180
 prediction_days = 90
 
@@ -90,21 +86,17 @@ for cutoff_date in cutoff_dates:
     observation_start = cutoff_date - pd.Timedelta(days=observation_days)
     prediction_end = cutoff_date + pd.Timedelta(days=prediction_days)
 
-    observation_mask = (
-        (purchases["InvoiceDate"] >= observation_start)
-        & (purchases["InvoiceDate"] < cutoff_date)
+    observation_mask = (purchases["InvoiceDate"] >= observation_start) & (
+        purchases["InvoiceDate"] < cutoff_date
     )
-    prediction_mask = (
-        (purchases["InvoiceDate"] >= cutoff_date)
-        & (purchases["InvoiceDate"] < prediction_end)
+    prediction_mask = (purchases["InvoiceDate"] >= cutoff_date) & (
+        purchases["InvoiceDate"] < prediction_end
     )
 
     eligible_customers = pd.Index(
         purchases.loc[observation_mask, "Customer ID"].unique()
     )
-    future_customers = purchases.loc[
-        prediction_mask, "Customer ID"
-    ].unique()
+    future_customers = purchases.loc[prediction_mask, "Customer ID"].unique()
 
     inactive_mask = ~eligible_customers.isin(future_customers)
     inactive_count = inactive_mask.sum()
@@ -116,3 +108,22 @@ for cutoff_date in cutoff_dates:
         f"{inactive_count} | "
         f"{inactivity_rate:.2%}"
     )
+
+
+duplicate_rows = data.loc[data.duplicated(keep=False)].copy()
+
+duplicate_group_sizes = duplicate_rows.groupby(
+    list(data.columns),
+    dropna=False,
+).size()
+
+print("\nDUPLICATE INVESTIGATION")
+print(f"Rows belonging to duplicate groups: {len(duplicate_rows)}")
+print(f"Duplicate groups: {len(duplicate_group_sizes)}")
+print(f"Excess copies: {data.duplicated().sum()}")
+print(f"Affected invoices: {duplicate_rows['Invoice'].nunique()}")
+print(f"Affected customers: {duplicate_rows['Customer ID'].nunique()}")
+print(f"Maximum copies of the same row: {duplicate_group_sizes.max()}")
+
+print("\nDuplicate-group size distribution:")
+print(duplicate_group_sizes.value_counts().sort_index().to_string())
