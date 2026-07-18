@@ -4,3 +4,7 @@ __pycache__/
 .ipynb_checkpoints/
 .env
 *.egg-info/
+# Local data
+data/raw/
+data/interim/
+data/processed/
