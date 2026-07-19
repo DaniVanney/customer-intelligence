@@ -81,3 +81,17 @@ def add_derived_columns(data: pd.DataFrame) -> pd.DataFrame:
     )
 
     return result
+
+
+
+def remove_exact_duplicates(data: pd.DataFrame) -> pd.DataFrame:
+    """Keep the first occurrence of each exactly duplicated row."""
+    return data.drop_duplicates(keep="first").reset_index(drop=True)
+
+
+def prepare_retail_data(raw_data: pd.DataFrame) -> pd.DataFrame:
+    """Apply the complete raw-to-interim retail transformation."""
+    standardized_data = standardize_column_names(raw_data)
+    typed_data = coerce_column_types(standardized_data)
+    deduplicated_data = remove_exact_duplicates(typed_data)
+    return add_derived_columns(deduplicated_data)

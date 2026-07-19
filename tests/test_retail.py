@@ -4,6 +4,8 @@ import pytest
 from customer_intelligence.data.retail import (
     add_derived_columns,
     coerce_column_types,
+    prepare_retail_data,
+    remove_exact_duplicates,
     standardize_column_names,
 )
 
@@ -115,3 +117,45 @@ def test_add_derived_columns() -> None:
         False,
         False,
     ]
+
+
+
+def test_remove_exact_duplicates() -> None:
+    data = pd.DataFrame(
+        {
+            "invoice_id": ["100", "100", "101"],
+            "quantity": [2, 2, 1],
+        }
+    )
+
+    result = remove_exact_duplicates(data)
+
+    assert len(result) == 2
+    assert result.index.tolist() == [0, 1]
+    assert result["invoice_id"].tolist() == ["100", "101"]
+
+
+def test_prepare_retail_data() -> None:
+    raw_data = pd.DataFrame(
+        {
+            "Invoice": [100, 100, "C101"],
+            "StockCode": ["A", "A", "B"],
+            "Description": ["Product A", "Product A", "Product B"],
+            "Quantity": [2, 2, -1],
+            "InvoiceDate": [
+                "2011-01-01",
+                "2011-01-01",
+                "2011-01-02",
+            ],
+            "Price": [10.0, 10.0, 5.0],
+            "Customer ID": [123.0, 123.0, 123.0],
+            "Country": ["UK", "UK", "UK"],
+        }
+    )
+
+    result = prepare_retail_data(raw_data)
+
+    assert len(result) == 2
+    assert result["invoice_id"].tolist() == ["100", "C101"]
+    assert result["line_total"].tolist() == [20.0, -5.0]
+    assert result["is_valid_purchase"].tolist() == [True, False]
