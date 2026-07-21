@@ -99,3 +99,88 @@ def test_build_customer_features_rejects_missing_columns():
             incomplete_data,
             snapshot_date="2021-03-01",
         )
+
+def test_build_customer_features_removes_fully_cancelled_purchase():
+    data = pd.DataFrame(
+        {
+            "customer_id": ["A", "A", "A"],
+            "invoice_id": ["INV-1", "C-INV-1", "INV-2"],
+            "invoice_date": pd.to_datetime(
+                [
+                    "2021-01-01",
+                    "2021-01-02",
+                    "2021-01-10",
+                ]
+            ),
+            "stock_code": ["P1", "P1", "P2"],
+            "quantity": [10, -10, 2],
+            "line_total": [20.0, -20.0, 10.0],
+            "is_valid_purchase": [True, False, True],
+        }
+    )
+
+    result = build_customer_features(
+        data,
+        snapshot_date="2021-02-01",
+    )
+    customer = result.iloc[0]
+
+    assert customer["order_count"] == 1
+    assert customer["total_spend"] == 10.0
+    assert customer["total_items"] == 2
+    assert customer["unique_products"] == 1
+    assert customer["last_purchase_date"] == pd.Timestamp("2021-01-10")
+    assert customer["recency_days"] == 22
+
+def test_future_cancellation_does_not_change_past_snapshot():
+    data = pd.DataFrame(
+        {
+            "customer_id": ["A", "A"],
+            "invoice_id": ["INV-1", "C-INV-1"],
+            "invoice_date": pd.to_datetime(
+                ["2021-01-01", "2021-03-01"]
+            ),
+            "stock_code": ["P1", "P1"],
+            "quantity": [10, -10],
+            "line_total": [20.0, -20.0],
+            "is_valid_purchase": [True, False],
+        }
+    )
+
+    result = build_customer_features(
+        data,
+        snapshot_date="2021-02-01",
+    )
+    customer = result.iloc[0]
+
+    assert customer["order_count"] == 1
+    assert customer["total_spend"] == 20.0
+    assert customer["total_items"] == 10
+    assert customer["recency_days"] == 31
+
+
+def test_partial_cancellation_reduces_purchase_values():
+    data = pd.DataFrame(
+        {
+            "customer_id": ["A", "A"],
+            "invoice_id": ["INV-1", "C-INV-1"],
+            "invoice_date": pd.to_datetime(
+                ["2021-01-01", "2021-01-02"]
+            ),
+            "stock_code": ["P1", "P1"],
+            "quantity": [10, -4],
+            "line_total": [20.0, -8.0],
+            "is_valid_purchase": [True, False],
+        }
+    )
+
+    result = build_customer_features(
+        data,
+        snapshot_date="2021-02-01",
+    )
+    customer = result.iloc[0]
+
+    assert customer["order_count"] == 1
+    assert customer["total_spend"] == 12.0
+    assert customer["total_items"] == 6
+    assert customer["unique_products"] == 1
