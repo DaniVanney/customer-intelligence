@@ -16,6 +16,9 @@ El dataset final se genera con:
 
 ```powershell
 python scripts/build_customer_scoring.py
+
+
+
 ```
 
 ## Scoring RFM
