@@ -28,6 +28,16 @@ def test_build_inactivity_snapshot_creates_temporal_target():
     assert customers.loc["A", "snapshot_date"] == pd.Timestamp("2021-03-01")
     assert customers.loc["A", "prediction_end_date"] == pd.Timestamp("2021-05-30")
 
+    assert customers.loc["A", "orders_last_30d"] == 0
+    assert customers.loc["A", "orders_last_90d"] == 1
+    assert customers.loc["A", "spend_last_90d"] == 20.0
+    assert customers.loc["A", "items_last_90d"] == 2
+    assert customers.loc["A", "unique_products_last_90d"] == 1
+
+    assert customers.loc["B", "orders_last_30d"] == 1
+    assert customers.loc["B", "orders_last_90d"] == 1
+    assert customers.loc["B", "spend_last_90d"] == 15.0
+
 
 def test_build_inactivity_snapshot_ignores_fully_cancelled_future_purchase():
     data = pd.DataFrame(
