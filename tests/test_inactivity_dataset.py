@@ -1,6 +1,6 @@
 import pandas as pd
 
-from customer_intelligence.churn.dataset import build_inactivity_dataset, build_inactivity_snapshot
+from customer_intelligence.churn.dataset import build_inactivity_dataset, build_inactivity_features, build_inactivity_snapshot
 
 def test_build_inactivity_snapshot_creates_temporal_target():
     data = pd.DataFrame(
@@ -84,3 +84,32 @@ def test_build_inactivity_dataset_combines_temporal_snapshots():
     assert targets.loc["B", pd.Timestamp("2021-03-01")]
     assert not targets.loc["A", pd.Timestamp("2021-06-01")]
     assert targets.loc["B", pd.Timestamp("2021-06-01")]
+
+def test_build_inactivity_features_creates_scoring_snapshot_without_target():
+    data = pd.DataFrame(
+        {
+            "customer_id": ["A", "B", "A"],
+            "invoice_id": ["INV-1", "INV-2", "INV-3"],
+            "invoice_date": pd.to_datetime(["2021-02-01", "2020-01-01", "2021-03-15"]),
+            "stock_code": ["P1", "P2", "P3"],
+            "quantity": [2, 1, 3],
+            "line_total": [20.0, 15.0, 30.0],
+            "is_valid_purchase": [True, True, True]
+        }
+    )
+
+    result = build_inactivity_features(
+        data,
+        cutoff_date="2021-03-01",
+        observation_days=180
+    )
+
+    customer = result.iloc[0]
+
+    assert result["customer_id"].tolist() == ["A"]
+    assert customer["snapshot_date"] == pd.Timestamp("2021-03-01")
+    assert customer["order_count"] == 1
+    assert customer["orders_last_30d"] == 1
+    assert customer["orders_last_90d"] == 1
+    assert "prediction_end_date" not in result.columns
+    assert "is_inactive" not in result.columns
