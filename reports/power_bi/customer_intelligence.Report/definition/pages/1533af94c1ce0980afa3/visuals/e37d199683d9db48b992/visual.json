@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "e37d199683d9db48b992",
+  "position": {
+    "x": 0,
+    "y": 654.73736439703191,
+    "z": 7000,
+    "height": 425.57928685807076,
+    "width": 1920.562935564627,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast_validation"
+                    }
+                  },
+                  "Property": "sales_agent"
+                }
+              },
+              "queryRef": "opportunity_forecast_validation.sales_agent",
+              "nativeQueryRef": "Agente comercial",
+              "displayName": "Agente comercial"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Oportunidades evaluadas"
+                }
+              },
+              "queryRef": "_measures.Oportunidades evaluadas",
+              "nativeQueryRef": "Oportunidades evaluadas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Pipeline pronosticado"
+                }
+              },
+              "queryRef": "_measures.Pipeline pronosticado",
+              "nativeQueryRef": "Pipeline pronosticado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Pipeline real"
+                }
+              },
+              "queryRef": "_measures.Pipeline real",
+              "nativeQueryRef": "Pipeline real"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Error agregado del pronóstico"
+                }
+              },
+              "queryRef": "_measures.Error agregado del pronóstico",
+              "nativeQueryRef": "Error agregado del pronóstico"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_measures"
+                  }
+                },
+                "Property": "Pipeline real"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "254.76699987771477D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "opportunity_forecast_validation.sales_agent"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Validación del pronóstico por agente comercial'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

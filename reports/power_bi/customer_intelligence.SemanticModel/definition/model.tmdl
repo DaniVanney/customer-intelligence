@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: es-AR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode","CalcGroup"]
+
+annotation PBI_QueryOrder = ["customer_scoring","customer_inactivity_risk","opportunity_modeling","opportunity_forecast","opportunity_forecast_validation","_measures"]
+
+ref table customer_scoring
+ref table customer_inactivity_risk
+ref table opportunity_modeling
+ref table opportunity_forecast
+ref table opportunity_forecast_validation
+ref table dim_date
+ref table _measures
+ref table dim_risk_level
+
+ref cultureInfo en-US
+

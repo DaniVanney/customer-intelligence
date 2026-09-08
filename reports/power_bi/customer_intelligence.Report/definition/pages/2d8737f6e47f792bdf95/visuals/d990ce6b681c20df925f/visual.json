@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "d990ce6b681c20df925f",
+  "position": {
+    "x": 1439.7976902975638,
+    "y": 135.62416833938516,
+    "z": 4000,
+    "height": 150,
+    "width": 480,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Pipeline esperado"
+                }
+              },
+              "queryRef": "_measures.Pipeline esperado",
+              "nativeQueryRef": "Pipeline esperado"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_measures"
+                  }
+                },
+                "Property": "Pipeline esperado"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_measures.Pipeline esperado"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

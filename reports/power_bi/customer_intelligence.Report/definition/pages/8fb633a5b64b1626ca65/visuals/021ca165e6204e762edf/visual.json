@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "021ca165e6204e762edf",
+  "position": {
+    "x": 0,
+    "y": 126.27077741942759,
+    "z": 1000,
+    "height": 150,
+    "width": 480,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Clientes evaluados por riesgo"
+                }
+              },
+              "queryRef": "_measures.Clientes evaluados por riesgo",
+              "nativeQueryRef": "Clientes evaluados por riesgo"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_measures"
+                  }
+                },
+                "Property": "Clientes evaluados por riesgo"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_measures.Clientes evaluados por riesgo"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

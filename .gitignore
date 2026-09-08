@@ -8,3 +8,5 @@ __pycache__/
 data/raw/
 data/interim/
 data/processed/
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

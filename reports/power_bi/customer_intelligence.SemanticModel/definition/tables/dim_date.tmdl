@@ -1,0 +1,84 @@
+table dim_date
+	lineageTag: 29dd172d-7e0a-456e-bda8-10a4c3f6cb63
+
+	column Date
+		formatString: General Date
+		lineageTag: 55fbdc12-d481-4381-9495-8e6cd50612c8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		formatString: 0
+		lineageTag: f4b330df-aa28-4d46-8df0-6f3aff67c0d0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		formatString: 0
+		lineageTag: 87a571e6-fc71-438d-8228-9cc91c2df5bc
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [month_number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		lineageTag: 858e5ade-701e-4b71-9547-7d95d94e9c17
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [month_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		lineageTag: d0d692c4-c37d-4851-8338-fd9a2aec2f49
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [year_month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		lineageTag: 73e7d8f7-749b-4f43-9bc7-6d8aec115717
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_quarter
+		lineageTag: 6a088dc6-f907-468b-b167-0e949618d572
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [year_quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(
+				        DATE(2009, 12, 1),
+				        DATE(2017, 12, 31)
+				    ),
+				    "year", YEAR([Date]),
+				    "month_number", MONTH([Date]),
+				    "month_name", FORMAT([Date], "MMM"),
+				    "year_month", FORMAT([Date], "YYYY-MM"),
+				    "quarter", "Q" & FORMAT([Date], "Q"),
+				    "year_quarter",
+				        FORMAT([Date], "YYYY")
+				        & "Q"
+				        & FORMAT([Date], "Q")
+				)
+
+	annotation PBI_Id = 2779f5210039422dbeb775b047d686c8
+

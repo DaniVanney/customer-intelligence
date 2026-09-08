@@ -1,0 +1,163 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "f0e6184401cd4be6597e",
+  "position": {
+    "x": 0,
+    "y": 676.56194321026635,
+    "z": 8000,
+    "height": 336.72207311847359,
+    "width": 1920.562935564627,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_scoring"
+                    }
+                  },
+                  "Property": "ml_segment"
+                }
+              },
+              "queryRef": "customer_scoring.ml_segment",
+              "nativeQueryRef": "Segmento de Machine Learning",
+              "displayName": "Segmento de Machine Learning"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_scoring"
+                    }
+                  },
+                  "Property": "recommended_action"
+                }
+              },
+              "queryRef": "customer_scoring.recommended_action",
+              "nativeQueryRef": "Acción recomendada",
+              "displayName": "Acción recomendada"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Total clientes"
+                }
+              },
+              "queryRef": "_measures.Total clientes",
+              "nativeQueryRef": "Cantidad total de clientes",
+              "displayName": "Cantidad total de clientes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Gasto historico"
+                }
+              },
+              "queryRef": "_measures.Gasto historico",
+              "nativeQueryRef": "Gasto historico"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Mediana de pedidos"
+                }
+              },
+              "queryRef": "_measures.Mediana de pedidos",
+              "nativeQueryRef": "Mediana de pedidos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Recencia mediana"
+                }
+              },
+              "queryRef": "_measures.Recencia mediana",
+              "nativeQueryRef": "Recencia mediana (días))",
+              "displayName": "Recencia mediana (días))"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "555D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "customer_scoring.recommended_action"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Perfil y acción recomendada por segmento'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

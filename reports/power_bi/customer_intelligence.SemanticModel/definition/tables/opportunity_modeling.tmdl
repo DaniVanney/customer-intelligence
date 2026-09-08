@@ -1,0 +1,216 @@
+table opportunity_modeling
+	lineageTag: 1071923f-9ae0-40c8-8ccf-d1bd2182e981
+
+	column opportunity_id
+		dataType: string
+		lineageTag: 8308bcd3-6fb9-4a09-b523-0b1b4060fe1c
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_agent
+		dataType: string
+		lineageTag: ca71c680-410c-4488-ab7a-79a0395f1e8a
+		summarizeBy: none
+		sourceColumn: sales_agent
+
+		annotation SummarizationSetBy = Automatic
+
+	column product
+		dataType: string
+		lineageTag: 56c5985f-dc10-431e-9c0d-296634cdff46
+		summarizeBy: none
+		sourceColumn: product
+
+		annotation SummarizationSetBy = Automatic
+
+	column account
+		dataType: string
+		lineageTag: 518c9176-f7fe-422e-be11-1681493713c0
+		summarizeBy: none
+		sourceColumn: account
+
+		annotation SummarizationSetBy = Automatic
+
+	column deal_stage
+		dataType: string
+		lineageTag: 0604a69a-4fda-45b6-8ce6-59efd228e5dc
+		summarizeBy: none
+		sourceColumn: deal_stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column engage_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 111e33f6-7617-4abb-91fb-ec321207c2e2
+		summarizeBy: none
+		sourceColumn: engage_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6f7aa76-5253-4eb1-932d-0de38cdad6c9
+		summarizeBy: none
+		sourceColumn: close_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_value
+		dataType: double
+		lineageTag: f592f068-71b2-4f54-a13d-a08ba14d5193
+		summarizeBy: sum
+		sourceColumn: close_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_closed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 70f267da-9e41-4ecd-81da-d1fe6e30fe35
+		summarizeBy: none
+		sourceColumn: is_closed
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_won
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 16dca55a-1301-43d2-8eae-9c4af257ff39
+		summarizeBy: none
+		sourceColumn: is_won
+
+		annotation SummarizationSetBy = Automatic
+
+	column series
+		dataType: string
+		lineageTag: dad6fa7e-f03d-4080-ad1a-ffa19a659c78
+		summarizeBy: none
+		sourceColumn: series
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_price
+		dataType: double
+		lineageTag: 2e07ccd2-9733-4636-bd92-708a5eaa3279
+		summarizeBy: sum
+		sourceColumn: sales_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column manager
+		dataType: string
+		lineageTag: f19284b6-fbb9-4127-b966-5154319c912c
+		summarizeBy: none
+		sourceColumn: manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column regional_office
+		dataType: string
+		lineageTag: 86373cfb-f3d3-43a4-8d4f-fc1e3cd3e140
+		summarizeBy: none
+		sourceColumn: regional_office
+
+		annotation SummarizationSetBy = Automatic
+
+	column sector
+		dataType: string
+		lineageTag: 62f30a29-87d1-486e-8f15-46476d46f982
+		summarizeBy: none
+		sourceColumn: sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_established
+		dataType: double
+		lineageTag: 0a55e8c9-f4c8-4d90-b876-612d89622121
+		summarizeBy: sum
+		sourceColumn: year_established
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue
+		dataType: double
+		lineageTag: 63e2e2e4-864e-4cca-97d0-5a58aee15fa3
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column employees
+		dataType: double
+		lineageTag: 68371554-2aed-4650-a7cd-8f533a1e1a76
+		summarizeBy: sum
+		sourceColumn: employees
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column office_location
+		dataType: string
+		lineageTag: d1f84c73-1455-4f0e-be22-53c9deb8a0da
+		summarizeBy: none
+		sourceColumn: office_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column subsidiary_of
+		dataType: string
+		lineageTag: f3cd920a-fcba-465a-9f55-fbb8a0d382bf
+		summarizeBy: none
+		sourceColumn: subsidiary_of
+
+		annotation SummarizationSetBy = Automatic
+
+	column engage_year
+		dataType: int64
+		formatString: 0
+		lineageTag: ed4cf105-8d46-42b0-a8f6-450ef231e2a3
+		summarizeBy: sum
+		sourceColumn: engage_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column engage_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c961d41-7c2f-4bcb-ba4a-6611fe2a3e44
+		summarizeBy: sum
+		sourceColumn: engage_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column engage_quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: d1ba4275-53b8-4208-ac7f-577623b9b32c
+		summarizeBy: sum
+		sourceColumn: engage_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	partition opportunity_modeling = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents("C:\Users\hecto\Documents\Proyectos\customer_intelligence\data\processed\opportunity_modeling.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,242 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "d9315f703e91e2399515",
+  "position": {
+    "x": 1.5588984866595998,
+    "y": 682.7975371569047,
+    "z": 8000,
+    "height": 330.48647917183519,
+    "width": 1919.0040370779675,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_inactivity_risk"
+                    }
+                  },
+                  "Property": "risk_rank"
+                }
+              },
+              "queryRef": "customer_inactivity_risk.risk_rank",
+              "nativeQueryRef": "Prioridad",
+              "displayName": "Prioridad"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_inactivity_risk"
+                    }
+                  },
+                  "Property": "customer_id"
+                }
+              },
+              "queryRef": "customer_inactivity_risk.customer_id",
+              "nativeQueryRef": "Cliente",
+              "displayName": "Cliente"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_inactivity_risk"
+                    }
+                  },
+                  "Property": "inactivity_risk_score"
+                }
+              },
+              "queryRef": "customer_inactivity_risk.inactivity_risk_score",
+              "nativeQueryRef": "Riesgo estimado",
+              "displayName": "Riesgo estimado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_inactivity_risk"
+                    }
+                  },
+                  "Property": "risk_level"
+                }
+              },
+              "queryRef": "customer_inactivity_risk.risk_level",
+              "nativeQueryRef": "Nivel de Riesgo",
+              "displayName": "Nivel de Riesgo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_inactivity_risk"
+                    }
+                  },
+                  "Property": "recency_days"
+                }
+              },
+              "queryRef": "customer_inactivity_risk.recency_days",
+              "nativeQueryRef": "Recencia (días)",
+              "displayName": "Recencia (días)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_inactivity_risk"
+                    }
+                  },
+                  "Property": "order_count"
+                }
+              },
+              "queryRef": "customer_inactivity_risk.order_count",
+              "nativeQueryRef": "Pedidos históricos",
+              "displayName": "Pedidos históricos"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_inactivity_risk"
+                    }
+                  },
+                  "Property": "retention_action"
+                }
+              },
+              "queryRef": "customer_inactivity_risk.retention_action",
+              "nativeQueryRef": "Acción recomendada",
+              "displayName": "Acción recomendada"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "customer_inactivity_risk"
+                  }
+                },
+                "Property": "risk_rank"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "679.5128920874715D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "customer_inactivity_risk.retention_action"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Clientes priorizados para retención'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f902539211ec2e745be5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "customer_inactivity_risk"
+              }
+            },
+            "Property": "is_alert"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "customer_inactivity_risk",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "is_alert"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

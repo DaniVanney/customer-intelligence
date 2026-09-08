@@ -1,0 +1,211 @@
+table _measures
+	lineageTag: ee570beb-afa8-4eca-b9f8-2df6bb037963
+
+	measure 'Total clientes' =
+			
+			DISTINCTCOUNT(
+			    customer_scoring[customer_id]
+			)
+		formatString: 0
+		lineageTag: 7941742d-0440-42c6-8223-cced7ca88cc8
+
+	measure 'Gasto historico' =
+			
+			SUM(
+			    customer_scoring[total_spend]
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: caa0b1ac-306e-44ec-b1c1-66beb885144f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Clientes con alerta' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(
+			        customer_inactivity_risk[customer_id]
+			    ),
+			    customer_inactivity_risk[is_alert] = TRUE()
+			)
+		formatString: 0
+		lineageTag: 822fa22a-c8eb-4170-b2fc-b38d917035ee
+
+	measure 'Clientes evaluados por riesgo' =
+			
+			DISTINCTCOUNT(
+			    customer_inactivity_risk[customer_id]
+			)
+		formatString: 0
+		lineageTag: df2a6ca3-ba6e-42e6-a25a-5c0b05790780
+
+	measure 'Tasa de alerta' =
+			DIVIDE(
+			    [Clientes con alerta], [Clientes evaluados por riesgo]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dee9bb58-ef3c-4111-b49d-eda8397aacbc
+
+	measure 'Oportunidades abiertas' =
+			
+			COUNTROWS(
+			    opportunity_forecast
+			)
+		formatString: 0
+		lineageTag: 663ed955-7f31-447b-b5cd-779504ab10a0
+
+	measure 'Tasa de conversión de oportunidades' =
+			
+			AVERAGE(
+			    opportunity_forecast[win_probability]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 824a1152-8154-4dd6-9ccc-eaf4451d381e
+
+	measure 'Ventas esperadas' =
+			
+			SUM(
+			    opportunity_forecast[win_probability]
+			)
+		lineageTag: edf04e2a-c225-4c7c-b371-69c15a493d27
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pipeline esperado' =
+			
+			SUM(
+			    opportunity_forecast[expected_value]
+			)
+		lineageTag: 3cda49ff-8037-4f30-80fa-58aa71e1d411
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Mediana de pedidos' =
+			
+			MEDIAN(
+			    customer_scoring[order_count]
+			)
+		lineageTag: 8e5bcfbd-95a2-46f6-8704-df4e66501179
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Recencia mediana' =
+			
+			MEDIAN(
+			    customer_scoring[recency_days]
+			)
+		lineageTag: 8553856e-79cd-4d0a-900b-d4bd62f46bae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Riesgo promedio' =
+			
+			AVERAGE(
+			    customer_inactivity_risk[inactivity_risk_score]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4b86fc25-f848-4615-8b7f-1574cd52cca3
+
+	measure 'Oportunidades cerradas' =
+			
+			COUNTROWS(
+			    opportunity_modeling
+			)
+		formatString: 0
+		lineageTag: 06b427e5-007d-4931-be2c-1c2f68c849f8
+
+	measure 'Oportunidades ganadas' =
+			
+			CALCULATE(
+			    COUNTROWS(
+			        opportunity_modeling
+			    ),
+			    opportunity_modeling[is_won] = TRUE()
+			)
+		formatString: 0
+		lineageTag: 84b16846-d15a-4035-9f9e-5e910bcbde82
+
+	measure 'Tasa de conversión histórica' =
+			
+			DIVIDE(
+			    [Oportunidades ganadas],
+			    [Oportunidades cerradas]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4d7dec40-1a54-4088-aff3-111872084742
+
+	measure 'Ingresos reales' =
+			
+			SUM(
+			    opportunity_modeling[close_value]
+			)
+		lineageTag: 179553a9-2099-43b5-95d9-d53175ccd3d1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Oportunidades evaluadas' =
+			
+			COUNTROWS(
+			    opportunity_forecast_validation
+			)
+		formatString: 0
+		lineageTag: fdd49ce9-64d2-4cba-ade7-bacee4d44c85
+
+	measure 'Pipeline pronosticado' =
+			
+			SUM(
+			    opportunity_forecast_validation[expected_value]
+			)
+		lineageTag: 996ea148-93af-4a3f-9a8f-e6fdcba03a0d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pipeline real' =
+			
+			SUM(
+			    opportunity_forecast_validation[close_value]
+			)
+		lineageTag: d9ecd805-5e8b-4450-b8ff-66d71100b003
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Error agregado del pronóstico' =
+			
+			DIVIDE(
+			    [Pipeline pronosticado] - [Pipeline real],
+			    [Pipeline real]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fba11f13-1fae-4e13-82e9-0de32f70e4cc
+
+	measure 'MAE por oportunidad' =
+			
+			AVERAGE(
+			    opportunity_forecast_validation[absolute_forecast_error]
+			)
+		lineageTag: d5a538f6-7220-4f69-843f-85d94f6c3fc6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column placeholder
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3f321ad8-bb21-4e7d-aa9a-200846ceda65
+		summarizeBy: sum
+		sourceColumn: placeholder
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [placeholder = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"placeholder", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

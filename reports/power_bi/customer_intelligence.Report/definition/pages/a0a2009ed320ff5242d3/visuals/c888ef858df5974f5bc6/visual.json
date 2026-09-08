@@ -1,0 +1,193 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "c888ef858df5974f5bc6",
+  "position": {
+    "x": 0,
+    "y": 692.15092807686233,
+    "z": 8000,
+    "height": 313.33859581857956,
+    "width": 1920.562935564627,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_modeling"
+                    }
+                  },
+                  "Property": "sales_agent"
+                }
+              },
+              "queryRef": "opportunity_modeling.sales_agent",
+              "nativeQueryRef": "Agente comercial",
+              "displayName": "Agente comercial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_modeling"
+                    }
+                  },
+                  "Property": "manager"
+                }
+              },
+              "queryRef": "opportunity_modeling.manager",
+              "nativeQueryRef": "Responsable",
+              "displayName": "Responsable"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Oportunidades cerradas"
+                }
+              },
+              "queryRef": "_measures.Oportunidades cerradas",
+              "nativeQueryRef": "Oportunidades cerradas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Oportunidades ganadas"
+                }
+              },
+              "queryRef": "_measures.Oportunidades ganadas",
+              "nativeQueryRef": "Oportunidades ganadas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Tasa de conversión histórica"
+                }
+              },
+              "queryRef": "_measures.Tasa de conversión histórica",
+              "nativeQueryRef": "Conversión",
+              "displayName": "Conversión"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_measures"
+                    }
+                  },
+                  "Property": "Ingresos reales"
+                }
+              },
+              "queryRef": "_measures.Ingresos reales",
+              "nativeQueryRef": "Ingresos reales"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_measures"
+                  }
+                },
+                "Property": "Ingresos reales"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "287.74461286649864D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "opportunity_modeling.sales_agent"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "328.55869984824386D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "opportunity_modeling.manager"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Rendimiento por agente comercial'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

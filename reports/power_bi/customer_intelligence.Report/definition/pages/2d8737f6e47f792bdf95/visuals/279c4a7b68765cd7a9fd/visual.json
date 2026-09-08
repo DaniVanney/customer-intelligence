@@ -1,0 +1,204 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "279c4a7b68765cd7a9fd",
+  "position": {
+    "x": 0,
+    "y": 692.15092807686233,
+    "z": 8000,
+    "height": 311.77969733192,
+    "width": 1920.562935564627,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "forecast_rank"
+                }
+              },
+              "queryRef": "opportunity_forecast.forecast_rank",
+              "nativeQueryRef": "Prioridad",
+              "displayName": "Prioridad"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "opportunity_id"
+                }
+              },
+              "queryRef": "opportunity_forecast.opportunity_id",
+              "nativeQueryRef": "Oportunidad",
+              "displayName": "Oportunidad"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "account"
+                }
+              },
+              "queryRef": "opportunity_forecast.account",
+              "nativeQueryRef": "Cuenta",
+              "displayName": "Cuenta"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "product"
+                }
+              },
+              "queryRef": "opportunity_forecast.product",
+              "nativeQueryRef": "Producto",
+              "displayName": "Producto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "sales_agent"
+                }
+              },
+              "queryRef": "opportunity_forecast.sales_agent",
+              "nativeQueryRef": "Agente comercial",
+              "displayName": "Agente comercial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "win_probability"
+                }
+              },
+              "queryRef": "opportunity_forecast.win_probability",
+              "nativeQueryRef": "Probabilidad de cierre",
+              "displayName": "Probabilidad de cierre"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "sales_price"
+                }
+              },
+              "queryRef": "opportunity_forecast.sales_price",
+              "nativeQueryRef": "Valor comercial",
+              "displayName": "Valor comercial"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "expected_value"
+                }
+              },
+              "queryRef": "opportunity_forecast.expected_value",
+              "nativeQueryRef": "Valor esperado",
+              "displayName": "Valor esperado"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "opportunity_forecast"
+                    }
+                  },
+                  "Property": "forecast_priority"
+                }
+              },
+              "queryRef": "opportunity_forecast.forecast_priority",
+              "nativeQueryRef": "Nivel de prioridad",
+              "displayName": "Nivel de prioridad"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "opportunity_forecast"
+                  }
+                },
+                "Property": "forecast_priority"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Oportunidades priorizadas por valor esperado'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

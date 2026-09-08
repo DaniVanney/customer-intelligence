@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "e3dc897124087b4ea635",
+  "position": {
+    "x": 10,
+    "y": 174,
+    "z": 9000,
+    "height": 44,
+    "width": 1910,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Validación temporal 2017Q4. El pipeline agregado presenta un error de 2,51 %, mientras que la capacidad para distinguir oportunidades ganadas y perdidas es limitada (ROC AUC: 0,544). El pronóstico resulta más útil para planificación agregada y priorización por valor.",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

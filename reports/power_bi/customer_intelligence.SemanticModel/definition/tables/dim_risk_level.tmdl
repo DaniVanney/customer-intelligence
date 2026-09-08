@@ -1,0 +1,39 @@
+table dim_risk_level
+	lineageTag: 6b5de1d2-c1cc-4d44-88ff-fb5906da434b
+
+	column risk_level
+		lineageTag: 16acdcda-7ed9-4ddc-b60f-b4671c89ef81
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [risk_level]
+		sortByColumn: risk_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_order
+		isHidden
+		formatString: 0
+		lineageTag: d6e025f4-d5b6-40da-b400-20c9330dc020
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [risk_order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_risk_level = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "risk_level", STRING,
+				    "risk_order", INTEGER,
+				    {
+				        {"Bajo", 1},
+				        {"Moderado", 2},
+				        {"Alto", 3},
+				        {"Crítico", 4}
+				    }
+				)
+
+	annotation PBI_Id = 8876aa9266b94ec0b14bd8ea4e7d1c38
+

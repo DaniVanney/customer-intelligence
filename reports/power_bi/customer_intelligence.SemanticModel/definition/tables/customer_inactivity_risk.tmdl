@@ -1,0 +1,204 @@
+table customer_inactivity_risk
+	lineageTag: 2303bd77-b0e8-4730-8e18-2242af6e8881
+
+	column customer_id
+		dataType: string
+		lineageTag: 95d31401-5407-43ca-94a8-97fcb18bc5d2
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c412b06-68cb-400b-879f-924281632196
+		summarizeBy: sum
+		sourceColumn: risk_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 444cf3ff-c6e5-4b65-a93b-6462f94dee9d
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 365ab957-7df4-47e8-98c2-89c59df906a9
+		summarizeBy: none
+		sourceColumn: first_purchase_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3b181339-0476-420f-b156-25614adda5db
+		summarizeBy: none
+		sourceColumn: last_purchase_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_count
+		dataType: int64
+		formatString: 0
+		lineageTag: d8b12955-4a98-4903-aa1b-072004028738
+		summarizeBy: sum
+		sourceColumn: order_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_spend
+		dataType: double
+		lineageTag: d5e73773-a649-4878-9815-82e9bb5baa4b
+		summarizeBy: sum
+		sourceColumn: total_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_items
+		dataType: int64
+		formatString: 0
+		lineageTag: f0b9d155-42e0-4dbd-b521-17e0cd0c70f6
+		summarizeBy: sum
+		sourceColumn: total_items
+
+		annotation SummarizationSetBy = Automatic
+
+	column unique_products
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ab8e1c2-3a57-40a8-a2f1-42830dc0231d
+		summarizeBy: sum
+		sourceColumn: unique_products
+
+		annotation SummarizationSetBy = Automatic
+
+	column recency_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c4eef4d-7145-4196-8b26-9eb3bc5fe06f
+		summarizeBy: sum
+		sourceColumn: recency_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column tenure_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 90931084-2ceb-4cf0-b3fd-b48548f1a1ed
+		summarizeBy: sum
+		sourceColumn: tenure_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_order_value
+		dataType: double
+		lineageTag: 9a198032-0f24-425c-a3d4-d2d2d3a9e8ef
+		summarizeBy: sum
+		sourceColumn: average_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column orders_last_30d
+		dataType: int64
+		formatString: 0
+		lineageTag: b3086d50-d73e-497a-9c80-f801cc029b45
+		summarizeBy: sum
+		sourceColumn: orders_last_30d
+
+		annotation SummarizationSetBy = Automatic
+
+	column orders_last_90d
+		dataType: int64
+		formatString: 0
+		lineageTag: 07dbfde6-717c-4137-b45d-625de7971ef6
+		summarizeBy: sum
+		sourceColumn: orders_last_90d
+
+		annotation SummarizationSetBy = Automatic
+
+	column spend_last_90d
+		dataType: double
+		lineageTag: da8d6b1c-1ddb-4d19-b179-a6fc658376f6
+		summarizeBy: sum
+		sourceColumn: spend_last_90d
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column items_last_90d
+		dataType: int64
+		formatString: 0
+		lineageTag: 5687fed6-ef69-413f-85ec-b3ece6ac1fd1
+		summarizeBy: sum
+		sourceColumn: items_last_90d
+
+		annotation SummarizationSetBy = Automatic
+
+	column unique_products_last_90d
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dfd439d-c67c-4839-b8d5-3eeda0c49caa
+		summarizeBy: sum
+		sourceColumn: unique_products_last_90d
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactivity_risk_score
+		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2ec09eb0-7478-4ec9-b8ef-53a60f7515ac
+		summarizeBy: sum
+		sourceColumn: inactivity_risk_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_level
+		dataType: string
+		lineageTag: 1d2f580f-1394-48dd-8a3d-b173ff5cc72a
+		summarizeBy: none
+		sourceColumn: risk_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_alert
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6c35d4f5-c165-4269-9b80-ad2cc316b55f
+		summarizeBy: none
+		sourceColumn: is_alert
+
+		annotation SummarizationSetBy = Automatic
+
+	column retention_action
+		dataType: string
+		lineageTag: b6484c15-da84-4312-96a9-89eb1b600498
+		summarizeBy: none
+		sourceColumn: retention_action
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_inactivity_risk = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents("C:\Users\hecto\Documents\Proyectos\customer_intelligence\data\processed\customer_inactivity_risk.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,22 @@
+relationship 823664fc-da26-14fb-1fb7-b6de54d4b60d
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: customer_scoring.customer_id
+	toColumn: customer_inactivity_risk.customer_id
+
+relationship 31c9624c-0661-1354-9b82-3585a0b71f88
+	fromColumn: opportunity_modeling.close_date
+	toColumn: dim_date.Date
+
+relationship 89ccbf33-d680-7b79-b315-64933cb719cc
+	fromColumn: opportunity_forecast.forecast_date
+	toColumn: dim_date.Date
+
+relationship 3622c5b4-aeef-0c11-9a61-c724c84ef1d1
+	fromColumn: opportunity_forecast_validation.close_date
+	toColumn: dim_date.Date
+
+relationship c0823aba-d732-125c-60fe-28bc800d1e09
+	fromColumn: customer_inactivity_risk.risk_level
+	toColumn: dim_risk_level.risk_level
+

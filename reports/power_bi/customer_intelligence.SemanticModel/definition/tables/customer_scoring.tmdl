@@ -1,0 +1,184 @@
+table customer_scoring
+	lineageTag: 650859e5-1bdf-4281-b694-14d2e9788d6f
+
+	column customer_id
+		dataType: string
+		lineageTag: e2573ee4-405c-49f4-bee9-1bc853cf2958
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 999712ee-5388-4e22-a608-3e35f0dd8839
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cd90d5ae-3349-4041-95a6-7219b6aeac33
+		summarizeBy: none
+		sourceColumn: first_purchase_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2361ec15-8847-441f-8475-65cddcbd9b9c
+		summarizeBy: none
+		sourceColumn: last_purchase_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 843bf791-8e9b-4064-80dd-32df86e40c54
+		summarizeBy: sum
+		sourceColumn: order_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_spend
+		dataType: double
+		lineageTag: 389258cf-0f61-40ac-83a4-8007539daaae
+		summarizeBy: sum
+		sourceColumn: total_spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_items
+		dataType: int64
+		formatString: 0
+		lineageTag: 619e998a-82bc-4ee3-9fd7-e4796f6e959c
+		summarizeBy: sum
+		sourceColumn: total_items
+
+		annotation SummarizationSetBy = Automatic
+
+	column unique_products
+		dataType: int64
+		formatString: 0
+		lineageTag: d9c269a5-8b7a-4a4f-9a1e-9051330caea6
+		summarizeBy: sum
+		sourceColumn: unique_products
+
+		annotation SummarizationSetBy = Automatic
+
+	column recency_days
+		dataType: int64
+		formatString: 0
+		lineageTag: a1c1648b-8fc3-43eb-8fb8-77c08ce3bbf3
+		summarizeBy: sum
+		sourceColumn: recency_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column tenure_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 45f19a8d-2dbb-4d21-8998-d16d12978396
+		summarizeBy: sum
+		sourceColumn: tenure_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_order_value
+		dataType: double
+		lineageTag: ac635c62-6e79-4cd6-b066-672f30cd312f
+		summarizeBy: sum
+		sourceColumn: average_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column recency_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 7eb489d5-416d-45ed-8ba5-06cdca2f7b07
+		summarizeBy: sum
+		sourceColumn: recency_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column frequency_score
+		dataType: int64
+		formatString: 0
+		lineageTag: e1985366-79a5-404d-8eae-4cdbdc936981
+		summarizeBy: sum
+		sourceColumn: frequency_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column monetary_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 464daa91-118e-424a-b054-94c4d41d2de5
+		summarizeBy: sum
+		sourceColumn: monetary_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column rfm_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 0cfbfc2d-3a72-4962-a9a1-874c04d37793
+		summarizeBy: sum
+		sourceColumn: rfm_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment
+		dataType: string
+		lineageTag: f0f5738a-70bf-4aae-b2f9-bd4acc3b2278
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column cluster_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2fd55cf9-a8f0-4b9b-9f08-c6ef94e12476
+		summarizeBy: sum
+		sourceColumn: cluster_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ml_segment
+		dataType: string
+		lineageTag: e41e68ea-6276-41b2-b62d-e07053a95b36
+		summarizeBy: none
+		sourceColumn: ml_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column recommended_action
+		dataType: string
+		lineageTag: a6591a90-f8eb-4a3b-a570-39aac1080d93
+		summarizeBy: none
+		sourceColumn: recommended_action
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_scoring = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents("C:\Users\hecto\Documents\Proyectos\customer_intelligence\data\processed\customer_scoring.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
